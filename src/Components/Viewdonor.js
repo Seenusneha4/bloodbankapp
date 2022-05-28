@@ -1,14 +1,30 @@
 import { getValue } from '@testing-library/user-event/dist/utils'
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Viewdonor = () => {
-    var donorlist=[{"name":"seena","address":"ABCD","bloodgroup":"B","mobileno":"1234445578","username":"seenu","password":"4567"},
-    {"name":"sneha","address":"ETYH","bloodgroup":"O","mobileno":"244556678","username":"snehu","password":"2344"},
-    {"name":"sreya","address":"JUIK","bloodgroup":"A","mobileno":"34556788","username":"sreyal","password":"5679"},
-    {"name":"sayan","address":"WERT","bloodgroup":"AB","mobileno":"3246687","username":"sayanc","password":"1111"},
-    {"name":"Reny","address":"CVTH","bloodgroup":"O","mobileno":"458902113","username":"renyous","password":"3344"}
-]
+    var[donorlist,setdonorlist]=useState([])
+    axios.get("http://localhost:5300/api/viewdonor").then((response)=>{
+      console.log(response.data)
+      setdonorlist(response.data.data)
+
+    })
+    const deleteapi=(id)=>{
+      const data={"_id":id}
+      console.log(data)
+      axios.post("http://localhost:5300/api/delete",data).then((response)=>{
+        if(response.data.status=="success")
+        {
+          alert("successfully deleted")
+        }
+        else
+        {
+          alert("error")
+        }
+      })
+  
+    }
   return (
     <div>
 
@@ -16,7 +32,7 @@ const Viewdonor = () => {
     <div className="row div col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
         <div className="row g-3">
         <table class="table">
-  <thead>
+  <thead class="table-info">
     <tr>
       <th scope="col">NAME</th>
       <th scope="col">ADDRESS</th>
@@ -33,10 +49,13 @@ const Viewdonor = () => {
       <td>{value.name}</td>
       <td>{value.address}</td>
       <td>{value.bloodgroup}</td>
-      
-      <td>{value.mobileno}</td>
+       <td>{value.mobileno}</td>
       <td>{value.username}</td>
       <td>{value.password}</td>
+      <td><div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                <button onClick={()=>{deleteapi(value._id)}} className="btn btn-success">DELETE</button>
+                
+            </div></td>
     </tr>
     })}
   </tbody>

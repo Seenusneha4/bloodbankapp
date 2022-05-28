@@ -9,6 +9,7 @@ const Signindonor = () => {
         const data={"username":username,"passworod":password}
         console.log(data)
     }
+   
   return (
       
     <div>
@@ -26,17 +27,12 @@ const Signindonor = () => {
                <input onChange={(c)=>{setpassword(c.target.value)}} type="password" name="" id="" class="form-control"/>
             </div>
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                <button onClick={subdata} className="btn btn-success">REGISTER</button>
+                <button onClick={subdata} className="btn btn-success">LOGIN</button>
                 
             </div>
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                 
-             <Link to="/view">view donor</Link>
-
-            </div>
-            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-            <Link to="/">Register</Link>
-                
+                <Link to="/signin">new user signin</Link>
 
             </div>
             

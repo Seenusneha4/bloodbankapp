@@ -6,16 +6,19 @@ import Signupdonor from './Components/Signupdonor';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Signindonor from './Components/Signindonor';
 import Viewdonor from './Components/Viewdonor';
+import Searchdonor from './Components/Searchdonor';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
       <Routes>
-        <Route path="/" exact element={<Signupdonor/>}/>
-        <Route path="/signin" exact element={<Signindonor/>}/>
+        <Route path="/signin" exact element={<Signupdonor/>}/>
+        <Route path="/" exact element={<Signindonor/>}/>
         <Route path="/view" exact element={<Viewdonor/>}/>
         <Route path="/" exact element={<Signupdonor/>}/>
+        <Route path="/search" exact element={<Searchdonor/>}/>
+
         
 
       </Routes>
