@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -9,8 +10,20 @@ const Signupdonor = () => {
     var[username,setusername]=useState("")
     var[password,setpassword]=useState("")
     const subdata=()=>{
-        const data={"name":name,"address":address,"bloodgroup":bloodgroup,"mobileno":mobileno,"username":username,"passworod":password}
+        const data={"name":name,"address":address,"bloodgroup":bloodgroup,"mobileno":mobileno,"username":username,"password":password}
         console.log(data)
+        axios.post("http://localhost:5300/api/bloodmanage",data).then((response)=>{
+            console.log(response.data)
+            if(response.data.status=="success")
+            {
+                alert("successfully inserted")
+            }
+            else
+            {
+               alert("failed")
+            }
+
+        })
     }
   return (
     <div>
@@ -47,9 +60,21 @@ const Signupdonor = () => {
                 <button onClick={subdata} className="btn btn-success">REGISTER</button>
                 
             </div>
+          
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                 
-                <Link to="/signin">new user signin</Link>
+             <Link to="/view">view donor</Link>
+
+            </div>
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                
+                <Link to="/search">search donor</Link>
+   
+               </div>
+
+            <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+            <Link to="/">userpage</Link>
+                
 
             </div>
             
